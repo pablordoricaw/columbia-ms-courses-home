@@ -10,3 +10,4 @@ The following table lists the courses I took during my Computer Engineering MS d
 | Fall 2024 | Heterogenous Computing for Signal and Data Processing | <ul><li>[Assignments Repo](https://github.com/eecse4750/e4750-2024fall-assignments-po2311)</li> <li> [Project Repo](https://github.com/eecse4750/e4750-2024fall-project-dnpo-dn2614-po2311)</li></ul> |
 | Spring 2025 | Private Systems | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comse6998-private-systems-assignments)</li></ul> |
 | Spring 2025 | Applied ML in the Cloud | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comse6998-applied-ml-cloud-assignments)</li></ul> |
+| Spring 2025 | Embedded Scalable Platforms | <ul><li>[Project Repo](https://github.com/pablordoricaw/csee6868-esp-project)</li></ul> |
