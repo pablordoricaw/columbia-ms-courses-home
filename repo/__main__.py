@@ -62,3 +62,6 @@ if __name__ == "__main__":
     repos.extend(ADD_REPOS)
 
     labels = list(map(set_issue_labels, repos))
+
+    with open("./README.md") as f:
+        pulumi.export("readme", f.read())
