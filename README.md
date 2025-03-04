@@ -12,3 +12,18 @@ The following table lists the courses I took during my Computer Engineering MS d
 | Spring 2025 | Applied ML in the Cloud | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comse6998-applied-ml-cloud-assignments)</li></ul> |
 | Spring 2025 | Embedded Scalable Platforms | <ul><li>[Project Repo](https://github.com/pablordoricaw/csee6868-esp-project)</li></ul> |
 | Spring 2025 | Large-Scale Stream Processing | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/elene6889-stream-processing-assignments)</li></ul> |
+
+## Template Metadata
+
+Useful metadata to have handy for homeworks and projects.
+
+```md
+**Author:** Pablo Ordorica Wiener (UNI: po2311)
+
+**Course:** <Course Number> <Course Name>
+
+- **Semester:** <Fall/Spring> <yyyy>
+- **Instructor:** <Instructor Full Name> (UNI: <xxxx>)
+
+- **TA:** <TA Full Name> (UNI: <xxxx>)
+```
