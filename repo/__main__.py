@@ -4,11 +4,13 @@ import pulumi
 import pulumi_github as github
 
 LABELS = {
-    "name": [
-        "urgent",
-        "reading",
+    "name": ["urgent", "reading", "presentation"],
+    "color": ["FF0000", "1A16D1", "C5DEF5"],
+    "description": [
+        "Top priority. Needed it yesterday.",
+        "Research paper, textbook chapter(s), etc.",
+        "Presentation for me to give during lecture",
     ],
-    "color": ["FF0000", "1A16D1"],
 }
 
 ADD_REPOS = ["columbia-ms-courses-home"]
