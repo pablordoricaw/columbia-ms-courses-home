@@ -3,15 +3,26 @@ import re
 import pulumi
 import pulumi_github as github
 
-LABELS = {
-    "name": ["urgent", "reading", "presentation"],
-    "color": ["FF0000", "1A16D1", "C5DEF5"],
-    "description": [
-        "Top priority. Needed it yesterday.",
-        "Research paper, textbook chapter(s), etc.",
-        "Presentation for me to give during lecture",
-    ],
-}
+
+class MyLabel:
+    def __init__(self, name, color, description=None, url=None):
+        self.name = name
+        self.color = color
+        self.description = description
+        self.url = url
+
+    def __str__(self):
+        return (
+            f'label: "{self.name}", color: "{self.color}", desc: "{self.description}"'
+        )
+
+
+LABELS = [
+    MyLabel("urgent", "FF0000", "Top priority. Needed it yesterday."),
+    MyLabel("reading", "1A1601", "Research paper, textbook chapter(s), etc."),
+    MyLabel("presentation", "C5DEF5", "Presentation for me to give during lecture."),
+    MyLabel("programming", "C5A2A9", "Involves writing code."),
+]
 
 ADD_REPOS = ["columbia-ms-courses-home"]
 IGNORE_REPOS = ["e4750-2024fall-assignments-po2311"]
@@ -38,12 +49,16 @@ def get_col_from_md(md: str, col: str, n: int):
 
 def set_issue_labels(repo: str):
     issue_labels = []
-    for i in range(len(LABELS["name"])):
-        row = {}
-        for k in LABELS.keys():
-            row[k] = LABELS[k][i]
+    pulumi.info(f"For repo {repo}...")
+    for label in LABELS:
+        pulumi.info(f"  - setting {label}")
+        row = {
+            "color": label.color,
+            "name": label.name,
+            "description": label.description,
+            "url": label.url,
+        }
         issue_labels.append(row)
-
     res = github.IssueLabels(f"labels-{repo}", repository=repo, labels=issue_labels)
     return res
 
@@ -64,6 +79,3 @@ if __name__ == "__main__":
     repos.extend(ADD_REPOS)
 
     labels = list(map(set_issue_labels, repos))
-
-    with open("./README.md") as f:
-        pulumi.export("readme", f.read())
