@@ -1,7 +1,18 @@
 import re
+import copy
+from typing import List
+from html.parser import HTMLParser
 
 import pulumi
 import pulumi_github as github
+
+ADD_REPOS = ["columbia-ms-courses-home"]
+IGNORE_REPOS = [
+    "e4750-2024fall-assignments-po2311",
+    "e4750-2024fall-project-dnpo-dn2614-po2311",
+]
+
+REPOS = []
 
 
 class MyLabel:
@@ -17,15 +28,17 @@ class MyLabel:
         )
 
 
-LABELS = [
-    MyLabel("urgent", "FF0000", "Top priority. Needed it yesterday."),
-    MyLabel("reading", "1A1601", "Research paper, textbook chapter(s), etc."),
-    MyLabel("presentation", "C5DEF5", "Presentation for me to give during lecture."),
-    MyLabel("programming", "C5A2A9", "Involves writing code."),
-]
+class MyHTMLParser(HTMLParser):
+    def handle_data(self, data):
+        """
+        Extract the repo from the url in "<tag_1><tag_2>...[Repo](https://wwww.github.com/user/repo)...</tag_2></tag_1>"
+        """
+        d = data.partition("]")[2]
+        url = d[1:-1]
+        repo = url.split("/")[-1]
 
-ADD_REPOS = ["columbia-ms-courses-home"]
-IGNORE_REPOS = ["e4750-2024fall-assignments-po2311"]
+        global REPOS
+        REPOS.append(repo)
 
 
 def get_col_from_md(md: str, col: str, n: int):
@@ -47,10 +60,14 @@ def get_col_from_md(md: str, col: str, n: int):
     return data[col]
 
 
-def set_issue_labels(repo: str):
+def get_repos_from_html(list: List):
+    pass
+
+
+def set_issue_labels(repo: str, labels: List):
     issue_labels = []
     pulumi.info(f"For repo {repo}...")
-    for label in LABELS:
+    for label in labels:
         pulumi.info(f"  - setting {label}")
         row = {
             "color": label.color,
@@ -67,15 +84,25 @@ if __name__ == "__main__":
     labels_config = pulumi.Config("labels")
     readme = labels_config.require("readme")
 
+    labels = [
+        MyLabel("urgent", "FF0000", "Top priority. Needed it yesterday."),
+        MyLabel("reading", "1A1601", "Research paper, textbook chapter(s), etc."),
+        MyLabel(
+            "presentation", "C5DEF5", "Presentation for me to give during lecture."
+        ),
+        MyLabel("programming", "C5A2A9", "Involves writing code."),
+    ]
+
     md = ""
     with open(readme, "r") as f:
         md += f.read()
 
     repos_col = get_col_from_md(md, "Repositories", 3)
 
-    url_p = r"https://github\.com/([^/]+)/([^/)]+)"
-    repos = list(map(lambda x: re.search(url_p, x).group(2), repos_col))
+    my_html_parser = MyHTMLParser()
+    list(map(my_html_parser.feed, repos_col))
+    repos = copy.deepcopy(REPOS)
+
     repos = list(filter(lambda x: x not in IGNORE_REPOS, repos))
     repos.extend(ADD_REPOS)
-
-    labels = list(map(set_issue_labels, repos))
+    labels = list(map(lambda r: set_issue_labels(r, labels), repos))
