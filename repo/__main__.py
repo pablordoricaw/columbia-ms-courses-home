@@ -13,7 +13,7 @@ IGNORE_REPOS = [
 ]
 
 
-class MyLabel:
+class MyIssueLabel:
     def __init__(self, name, color, description=None, url=None):
         self.name = name
         self.color = color
@@ -86,12 +86,12 @@ if __name__ == "__main__":
     readme = labels_config.require("readme")
 
     labels = [
-        MyLabel("urgent", "FF0000", "Top priority. Needed it yesterday."),
-        MyLabel("reading", "1A1601", "Research paper, textbook chapter(s), etc."),
-        MyLabel(
+        MyIssueLabel("urgent", "FF0000", "Top priority. Needed it yesterday."),
+        MyIssueLabel("reading", "1A1601", "Research paper, textbook chapter(s), etc."),
+        MyIssueLabel(
             "presentation", "C5DEF5", "Presentation for me to give during lecture."
         ),
-        MyLabel("programming", "C5A2A9", "Involves writing code."),
+        MyIssueLabel("programming", "C5A2A9", "Involves writing code."),
     ]
 
     md = ""
