@@ -12,8 +12,6 @@ IGNORE_REPOS = [
     "e4750-2024fall-project-dnpo-dn2614-po2311",
 ]
 
-REPOS = []
-
 
 class MyLabel:
     def __init__(self, name, color, description=None, url=None):
@@ -29,6 +27,10 @@ class MyLabel:
 
 
 class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.data = []
+
     def handle_data(self, data):
         """
         Extract the repo from the url in "<tag_1><tag_2>...[Repo](https://wwww.github.com/user/repo)...</tag_2></tag_1>"
@@ -37,8 +39,7 @@ class MyHTMLParser(HTMLParser):
         url = d[1:-1]
         repo = url.split("/")[-1]
 
-        global REPOS
-        REPOS.append(repo)
+        self.data.append(repo)
 
 
 def get_col_from_md(md: str, col: str, n: int):
@@ -101,7 +102,7 @@ if __name__ == "__main__":
 
     my_html_parser = MyHTMLParser()
     list(map(my_html_parser.feed, repos_col))
-    repos = copy.deepcopy(REPOS)
+    repos = copy.deepcopy(my_html_parser.data)
 
     repos = list(filter(lambda x: x not in IGNORE_REPOS, repos))
     repos.extend(ADD_REPOS)
