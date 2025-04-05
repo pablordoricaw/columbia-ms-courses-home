@@ -61,10 +61,6 @@ def get_col_from_md(md: str, col: str, n: int):
     return data[col]
 
 
-def get_repos_from_html(list: List):
-    pass
-
-
 def set_issue_labels(repo: str, labels: List):
     issue_labels = []
     pulumi.info(f"For repo {repo}...")
