@@ -5,6 +5,3 @@ runtime:
     toolchain: uv
     virtualenv: .venv
 description: One central project for all my Columbia class homeworks and projects
-config:
-  gcp:project: columbia-po2311
-  sa:name: master-of-gpu-vm-puppets
