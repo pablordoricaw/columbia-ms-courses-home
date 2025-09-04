@@ -12,6 +12,15 @@ The following table lists the courses I took during my Computer Engineering MS d
 | Spring 2025 | Applied ML in the Cloud | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comse6998-applied-ml-cloud-assignments)</li><li>[Final Project Repo](https://github.com/pablordoricaw/comse6998-applied-ml-cloud-project)</li></ul> |
 | Spring 2025 | Embedded Scalable Platforms | <ul><li>[Project Repo](https://github.com/pablordoricaw/csee6868-esp-project)</li></ul> |
 | Spring 2025 | Large-Scale Stream Processing | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/elene6889-stream-processing-assignments)</li></ul> |
+| Fall 2025 | Parallel Functional Programming | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comsw4995-parallel-fp-assignments)</li></ul> |
+
+## Getting Started
+
+1. Create a GitHub repository for a course assignments and/or project following the naming convention `<course-code>-<course-name>-<[assignments/project]>` i.e. `comsw4705-nlp-assignments`.
+
+2. Create an entry for the course with the created repo in the table above.
+
+3. Run the Pulumi Python [ms-courses-home](./ms-courses-home/) app **locally** to configure specific settings of the newly created repo.
 
 ## Template Metadata
 
