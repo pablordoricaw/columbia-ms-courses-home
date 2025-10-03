@@ -15,6 +15,7 @@ The following table lists the courses I took during my Computer Engineering MS d
 | Fall 2025 | Parallel Functional Programming | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comsw4995-parallel-fp-assignments)</li></ul> |
 | Fall 2025 | Artificial Intelligence-of-Things | <ul><li>[Labs Repo](https://github.com/pablordoricaw/eecse4764-aiot)</li></ul> |
 | Fall 2025 | Computer Networks | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/cseew4119-computer-networks-assignments)</li></ul> |
+| Fall 2025 | Malware Analysis & Reverse Engineering | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comsw4186-malware-analysis-reverse-eng-assignments)</li></ul> |
 
 ## Getting Started
 
