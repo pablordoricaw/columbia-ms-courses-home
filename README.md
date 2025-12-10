@@ -13,7 +13,7 @@ The following table lists the courses I took during my Computer Engineering MS d
 | Spring 2025 | Embedded Scalable Platforms | <ul><li>[Project Repo](https://github.com/pablordoricaw/csee6868-esp-project)</li></ul> |
 | Spring 2025 | Large-Scale Stream Processing | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/elene6889-stream-processing-assignments)</li></ul> |
 | Fall 2025 | Parallel Functional Programming | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comsw4995-parallel-fp-assignments)</li><li>[Project Repo](https://github.com/pablordoricaw/comsw4995-parallel-fp-project)</li></ul> |
-| Fall 2025 | Artificial Intelligence-of-Things | <ul><li>[Labs Repo](https://github.com/pablordoricaw/eecse4764-aiot)</li></ul> |
+| Fall 2025 | Artificial Intelligence-of-Things | <ul><li>[Labs Repo](https://github.com/pablordoricaw/eecse4764-aiot-labs)</li><li>[Project Repo](https://github.com/pablordoricaw/eecse4764-aiot-project)</li></ul> |
 | Fall 2025 | Computer Networks | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/cseew4119-computer-networks-assignments)</li></ul> |
 | Fall 2025 | Malware Analysis & Reverse Engineering | <ul><li>[Assignments Repo](https://github.com/pablordoricaw/comsw4186-malware-analysis-reverse-eng-assignments)</li></ul> |
 
