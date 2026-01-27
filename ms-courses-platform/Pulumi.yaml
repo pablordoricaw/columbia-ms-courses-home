@@ -1,0 +1,7 @@
+name: ms-courses-platform
+runtime:
+  name: python
+  options:
+    toolchain: uv
+    virtualenv: .venv
+description: Cloud platform for my MS courses.

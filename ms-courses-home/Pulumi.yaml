@@ -1,7 +1,0 @@
-name: columbia
-runtime:
-  name: python
-  options:
-    toolchain: uv
-    virtualenv: .venv
-description: One central project for all my Columbia class homeworks and projects

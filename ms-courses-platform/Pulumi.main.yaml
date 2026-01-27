@@ -1,0 +1,8 @@
+config:
+  gcp:project: columbia-po2311
+  gcp:region: "us-east1"
+  gcp:zone: "b"
+  vmConfig:
+    ubuntu_version: "24.04"
+    tags:
+      - "test"
