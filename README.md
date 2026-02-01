@@ -41,3 +41,77 @@ Useful metadata to have handy for homeworks and projects.
 
 - **TA:** <TA Full Name> (UNI: <xxxx>)
 ```
+
+## Cloud Infrastructure Strategy for Assignments and Projects
+
+Some of the assignments and projects require cloud computing, and this section explains my approach to managing cloud resources for those courses.
+
+As seen on the table above, there are two type of repositories:
+
+- Individual assignments: One single repository per course containing all individual homework.
+- Team projects: Separate repository per project (especially for team collaborations).
+
+| Feature        | 👤 Individual Assignments        | 👥 Team Projects          |
+| -------------- | -------------------------------- | ------------------------- |
+| GCP Project    | Shared GCP Project               | New Dedicated GCP Project |
+| Pulumi Project | Unique name per Assignments Repo | Unique name per Project   |
+| Pulumi Stack   | main (local deployment)          | Depends on the project.   |
+| State Backend  | Pulumi Cloud (Personal Org)      | GCP Bucket Storage        |
+
+## Workflow for New Repositories
+
+### 1. Individual Assignments
+
+All individual assignments
+
+1. share a single GCP Project to avoid overhead, but
+2. use separate Pulumi Projects (one per assignments repo) to keep state isolated.
+
+Run this in the root of your assignment repo:
+
+```bash
+# Initialize a new Pulumi Python project using 'uv' as the package manager
+# --force is used because the directory already exists (the repo root)
+pulumi new python --name <course-code>-<assignment-name> --toolchain uv --force
+```
+
+After initialization, add the my shared cloud infra library:
+
+```bash
+uv add "git+https://github.com/pablordoricaw/my-cloud-lib.git@v0.2.0#subdirectory=pulumi"
+```
+
+### Team Projects
+
+For group projects, I use:
+
+- A dedicated GCP Project is created for the team. This ensures my personal credits are not billed for team usage and allows teammates to have IAM access.
+- A GCP Storage Bucket inside the team's project. This allows all teammates to read/write state without needing access to my personal Pulumi Cloud organization.
+
+**Prerequisites:**
+
+- A new GCP Project in the Google Cloud Console.
+- Grant "Editor" IAM roles to all team members on that GCP Project.
+- A storage bucket to use as the backend for the IaC state
+
+Run this in the root of the project repo:
+
+```bash
+# 1. Authenticate to the Team's State Bucket (Teammates must do this too)
+#    Ensure you have 'Storage Object Admin' on the bucket.
+gcloud auth application-default login
+pulumi login gs://<team-project-bucket-name>
+
+# 2. Initialize the project (same as individual)
+pulumi new python --name <project-name> --description "Course Code Team Project"
+
+# 3. Configure the Stack to use the Team's GCP Project
+pulumi config set gcp:project <team-gcp-project-id>
+```
+
+
+Add my shared infrastructure library if needed:
+
+```bash
+uv add "git+https://github.com/pablordoricaw/my-cloud-lib.git@v0.2.0#subdirectory=pulumi"
+```
